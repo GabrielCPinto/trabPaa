@@ -31,30 +31,39 @@ def find_paths(node, cities, path, distance):
         if (city not in path) and (node in cities[city]):
             find_paths(city, dict(cities), list(path), distance)
 
-def distEntreCid(n, cities) :
+def distEntreCid(cities) :
     #recebe as entradas
-    for i in range(n):
-        for j in range(i, n):
-            
-        cities.insert(i:a)
+    n = 3
+    x = 0
+    y = 0
+    for i in range(1,n+1):
+        xi = x
+        yi = y
+        cities[str(i)]=dict()
+        for j in range(1,n+1):
+            xj = x+i+j
+            yj = y
+            cities[str(i)][str(j)] = calculaDistancia(xi,yi,xj,yj)
+    return cities
         
 if __name__ == '__main__':
+    cities = dict()
+    distEntreCid(cities)
     cities = {
-        'RV': {'S': 195, 'UL': 86, 'M': 178, 'BA': 180, 'Z': 91},
-        'UL': {'RV': 86, 'S': 107, 'N': 171, 'M': 123},
-        'M': {'RV': 178, 'UL': 123, 'N': 170},
-        'S': {'RV': 195, 'UL': 107, 'N': 210, 'F': 210, 'MA': 135, 'KA': 64},
-        'N': {'S': 210, 'UL': 171, 'M': 170, 'MA': 230, 'F': 230},
-        'F': {'N': 230, 'S': 210, 'MA': 85},
-        'MA': {'F': 85, 'N': 230, 'S': 135, 'KA': 67},
-        'KA': {'MA': 67, 'S': 64, 'BA': 191},
-        'BA': {'KA': 191, 'RV': 180, 'Z': 85, 'BE': 91},
-        'BE': {'BA': 91, 'Z': 120},
-        'Z': {'BA': 120, 'BE': 85, 'RV': 91}
+        '1': {'4': 195, '2': 86, '3': 178, '9': 180, '11': 91},
+        '2': {'1': 86, '4': 107, '5': 171, '3': 123},
+        '3': {'1': 178, '2': 123, '5': 170},
+        '4': {'1': 195, '2': 107, '5': 210, '6': 210, '7': 135, '8': 64},
+        '5': {'4': 210, '2': 171, '3': 170, '7': 230, '6': 230},
+        '6': {'5': 230, '4': 210, '7': 85},
+        '7': {'6': 85, '5': 230, '4': 135, '8': 67},
+        '8': {'7': 67, '4': 64, '9': 191},
+        '9': {'8': 191, '1': 180, '11': 85, '10': 91},
+        '10': {'9': 91, '11': 120},
+        '11': {'9': 120, '10': 85, '1': 91}
     }
-
-    print ("Start: RAVENSBURG")
-    find_paths('Z', cities, [], 0)
+    print ("Start: 1")
+    find_paths('1', cities, [], 0)
     print ("\n")
     routes.sort()
     if len(routes) != 0:
